@@ -1,0 +1,15 @@
+# Rust
+/engine/target/
+# Node
+node_modules/
+.next/
+out/
+# Env and OS
+.env*
+!.env.example
+.DS_Store
+Thumbs.db
+# Audio scratch
+*.wav
+*.flac
+!assets/**/*.wav
