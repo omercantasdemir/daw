@@ -3,9 +3,21 @@
 Before doing anything in this repository, read and follow
 `docs/orchestration/BUILDER_RULES.md`. It is the full rule set.
 
-If you are asked to "do the next task": take the lowest-numbered file in
-`docs/handoffs/todo/` and do only that one. If `todo/` is empty, say so and
-stop. If `docs/handoffs/doing/` already holds a task, finish that one instead.
+## Work loop: do not end your session after a task
+
+Tasks arrive as files in `docs/handoffs/todo/`. A reviewer adds the next one
+only after reviewing your last one, so you wait between tasks:
+
+1. Run `python docs/orchestration/wait_for_task.py`. It prints one line.
+2. `TASK: <path>` or `RESUME: <path>`: do that one task, following the builder
+   rules, through to its commit. Then go back to step 1.
+3. `WAIT: ...`: run the same command again. Do nothing else while waiting: no
+   edits, no extra improvements, no starting the next task early.
+4. `STOP: ...`: end the session and say that you were asked to stop.
+
+If the command prints `WAIT` 30 times in a row (about two hours), end the
+session and say that you timed out waiting. Never do two tasks without running
+the wait command in between.
 
 The rules that matter most:
 

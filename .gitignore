@@ -27,5 +27,7 @@ recordings/
 renders/
 # Local DAW projects (synced separately later, never through git)
 projects/
+# Signal file that tells a waiting builder session to end
+docs/handoffs/STOP
 # Local machine config (audio device choices)
 local/

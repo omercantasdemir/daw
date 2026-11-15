@@ -41,14 +41,21 @@ itself today.
 
 ## Current working loop
 
-1. The planner writes the task to `todo/`, pushes, and starts a watcher on
-   the repo.
-2. The owner types one fixed line in the Antigravity app:
-   `Do the next task` (`AGENTS.md` tells the agent which file that is).
-3. The watcher sees the `task NNN` commit; the planner reviews, pushes the
-   review and queues the next task.
+The builder session stays open and the `todo/` folder is the planner's way to
+instruct it (set up 2026-11-15 at the owner's request):
 
-Installing the `agy` CLI removes step 2.
+1. Once per session, the owner types in the Antigravity app:
+   `Start the work loop described in AGENTS.md`
+2. The builder runs `docs/orchestration/wait_for_task.py`, which blocks until
+   a committed task file is in `todo/` and the tree is clean, then does that
+   task and commits.
+3. The builder runs the wait script again and idles. The planner's watcher
+   sees the `task NNN` commit; the planner reviews, pushes the review and
+   queues the next task (or a fix task), which the waiting builder picks up.
+4. To end the builder's session, create the file `docs/handoffs/STOP`
+   (git-ignored). Delete it before the next session.
+
+The planner never commits while a task is in `doing/`.
 
 ## How task 001 actually ran (2026-11-15)
 

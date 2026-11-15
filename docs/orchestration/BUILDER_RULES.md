@@ -57,6 +57,14 @@ your actual diff after every task.
 - Move the task file from `doing/` to `done/`.
 - Commit everything with the message `task NNN: <title>`.
 
+## After the commit: wait, do not end the session
+
+Run `python docs/orchestration/wait_for_task.py` and follow the one line it
+prints, as described in `AGENTS.md` ("Work loop"). While it says `WAIT`, run it
+again and change nothing in the repo. The reviewer is reading your diff during
+that time; the next task, or a fix task for this one (`NNNa_fix_...`), appears
+in `todo/` when the review is done.
+
 ## If blocked
 
 If you are blocked or the task is unclear: stop, write the question in the
