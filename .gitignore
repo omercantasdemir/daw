@@ -25,5 +25,7 @@ Thumbs.db
 !assets/**/*.wav
 recordings/
 renders/
+# Local DAW projects (synced separately later, never through git)
+projects/
 # Local machine config (audio device choices)
 local/
