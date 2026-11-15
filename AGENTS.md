@@ -3,6 +3,10 @@
 Before doing anything in this repository, read and follow
 `docs/orchestration/BUILDER_RULES.md`. It is the full rule set.
 
+If you are asked to "do the next task": take the lowest-numbered file in
+`docs/handoffs/todo/` and do only that one. If `todo/` is empty, say so and
+stop. If `docs/handoffs/doing/` already holds a task, finish that one instead.
+
 The rules that matter most:
 
 - Work only on the task file you were given, from `docs/handoffs/`.
