@@ -2,7 +2,34 @@
 
 Last checked: 2026-11-15
 
-## Status: `agy` is NOT installed, so runs use the manual fallback
+## Launcher in use: `agentapi` (ships with the Antigravity app)
+
+Found 2026-11-15. The app installs
+`%USERPROFILE%\.gemini\antigravity\bin\agentapi.bat`, which runs
+`%LOCALAPPDATA%\Programs\antigravity\resources\bin\language_server.exe agentapi`.
+It talks to the running Antigravity app, so the app must be open. Help output,
+copied verbatim:
+
+```
+Usage: agentapi <command> [args]
+  get-conversation-metadata <conversation_id>
+  new-conversation [--model=<flash_lite|flash|pro|model_id>] [--title=<title>] [--profile=<profile>] <prompt>
+  send-message [--title=<title>] <recipient_id> <content>
+```
+
+| question | answer |
+|---|---|
+| one-shot run | `agentapi new-conversation --model=pro --title=<title> "<prompt>"` |
+| model | `--model=flash_lite \| flash \| pro` or a model id |
+| follow-up / status | `send-message <conversation_id> <content>`, `get-conversation-metadata <conversation_id>` |
+| permission level | no flag; approvals follow the Antigravity app's own settings |
+| rules file | `AGENTS.md` or `GEMINI.md`, found by walking up to the repo root; also `.agents/rules/*.md` (source: the app's built-in `agy-customizations` docs). This repo uses a root `AGENTS.md` that points to `BUILDER_RULES.md`. |
+
+Call `language_server.exe agentapi ...` directly from PowerShell, not through
+the `.bat`: the repo path contains non-ASCII characters and `cmd` can garble
+them. Observations from real runs are added below as they happen.
+
+## Status of the separate `agy` CLI: not installed
 
 - `agy` is not on PATH (`Get-Command agy` finds nothing).
 - The Antigravity **IDE** is installed at
