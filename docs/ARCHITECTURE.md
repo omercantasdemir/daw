@@ -1,8 +1,10 @@
 # Architecture
 
-Status: **draft, waiting for the owner's OK** (2026-11-15). Task 001 does not
-depend on the open questions at the bottom. Task 002 does not start before the
-OK.
+Status: **working baseline** (2026-11-15). The owner's goal is the most useful
+approach in practice, with latency as a concern but not yet measured. So the
+plan is: build the useful parts first in Python, measure latency on the real
+interface, and move only the real-time path to native code if the numbers
+require it (decision 12).
 
 ## What this is
 
@@ -59,6 +61,17 @@ Browser (web UI)  <-- HTTP + WebSocket on 127.0.0.1 -->  Local engine
     explicitly choosing it.
 11. **License**: `pedalboard` is GPLv3, so anything distributed with it must be
     under GPLv3 terms. See open question 1.
+12. **Latency is decided by measurement, not up front.** Recording to disk,
+    editing, offline render and playback do not need low latency and stay in
+    Python. The one latency-critical feature is hearing an amp sim live while
+    playing. Task 004 includes a round-trip latency measurement of live
+    monitoring through `pedalboard` on the owner's interface. Rule of thumb:
+    about 10 ms or less round trip feels fine, above about 20 ms is
+    distracting. If Python cannot reach that, the real-time path (input →
+    effects → output) is rebuilt as a small native core behind the same
+    interface, and everything else stays as it is. Until then, the owner
+    monitors through the interface's direct monitoring or an existing
+    standalone amp sim while recording the DI.
 
 ## Folder layout
 
@@ -105,12 +118,10 @@ timeline in the UI.
    honest option: relicense the repo to GPL-3.0-or-later. Alternative: keep MIT
    for the source and state that distributed engine builds are GPLv3. Must be
    settled before task 004 (first use of `pedalboard`).
-2. **Is Rust still the long-term engine?** The README says "Local engine
-   (Rust)". Proposed wording: Python prototype now, native real-time core later
-   only if latency requires it.
-3. **Which GitHub repo is the home**: `online-daw-project` (has the first
-   commit) or `daw` (empty)?
-4. **Web UI stack**: keep Next.js + TypeScript from the earlier design, or
-   decide in task 007?
-5. **Stereo and other sample rates**: mono 44.1 kHz only for now. Is 48 kHz
-   needed for your interface?
+2. **Web UI stack**: decided in task 007. Next.js + TypeScript from the earlier
+   design is the default candidate.
+3. **Stereo and other sample rates**: mono 44.1 kHz only for now. Revisit if
+   the owner's interface or a plugin needs 48 kHz.
+
+Settled on 2026-11-15: the repo's home is `omercantasdemir/daw`; the native
+engine question is answered by decision 12.
