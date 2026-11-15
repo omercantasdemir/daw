@@ -52,7 +52,7 @@ docs/     Architecture and protocol notes
 
 ## Status
 
-Early design. See [docs/architecture.md](docs/architecture.md).
+Early build. The engine is starting as a Python prototype (recorder first); the Rust engine and Next.js UI described above are the earlier design and are under review. Current decisions and open questions: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## License
 

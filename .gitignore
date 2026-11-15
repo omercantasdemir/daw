@@ -1,3 +1,10 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
 # Rust
 /engine/target/
 # Node
@@ -9,7 +16,14 @@ out/
 !.env.example
 .DS_Store
 Thumbs.db
-# Audio scratch
+# Audio: recordings, renders, scratch
 *.wav
 *.flac
+*.mp3
+*.ogg
+*.aiff
 !assets/**/*.wav
+recordings/
+renders/
+# Local machine config (audio device choices)
+local/
