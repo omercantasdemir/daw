@@ -61,6 +61,10 @@ Browser (web UI)  <-- HTTP + WebSocket on 127.0.0.1 -->  Local engine
     explicitly choosing it.
 11. **License**: `pedalboard` is GPLv3, so anything distributed with it must be
     under GPLv3 terms. See open question 1.
+13. **Only `engine/` imports `sounddevice`.** On Windows the engine sets
+    `SD_ENABLE_ASIO=1` before its first import, which is the only way the
+    library exposes ASIO devices. Code that imports `sounddevice` directly,
+    before the engine does, loses ASIO.
 12. **Latency is decided by measurement, not up front.** Recording to disk,
     editing, offline render and playback do not need low latency and stay in
     Python. The one latency-critical feature is hearing an amp sim live while

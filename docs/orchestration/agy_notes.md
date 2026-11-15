@@ -25,9 +25,18 @@ Usage: agentapi <command> [args]
 | permission level | no flag; approvals follow the Antigravity app's own settings |
 | rules file | `AGENTS.md` or `GEMINI.md`, found by walking up to the repo root; also `.agents/rules/*.md` (source: the app's built-in `agy-customizations` docs). This repo uses a root `AGENTS.md` that points to `BUILDER_RULES.md`. |
 
-Call `language_server.exe agentapi ...` directly from PowerShell, not through
-the `.bat`: the repo path contains non-ASCII characters and `cmd` can garble
-them. Observations from real runs are added below as they happen.
+**Result: `agentapi` cannot be called from an outside terminal.**
+`get-conversation-metadata` returned `ANTIGRAVITY_LS_ADDRESS is not set`. The
+app sets that variable only for its own agent processes, so this command is
+for agents running inside Antigravity, not for launching runs from outside.
+It was not forced.
+
+## How task 001 actually ran (2026-11-15)
+
+The owner opened the repo in the Antigravity app and typed the manual-fallback
+prompt. The agent picked up `AGENTS.md`, followed `BUILDER_RULES.md`, and
+finished in about 20 minutes (first file change 14:09, commit 14:29). This is
+the working method until the `agy` CLI is installed.
 
 ## Status of the separate `agy` CLI: not installed
 

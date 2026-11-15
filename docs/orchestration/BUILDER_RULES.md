@@ -27,6 +27,13 @@ your actual diff after every task.
 - Do not add a dependency the task does not name. If you need one, write it as
   an open question.
 - Run commands from the repo root.
+- Do not install packages into the system or user Python. Create `.venv` in
+  the repo root if it is missing (`python -m venv .venv`), install
+  `requirements.txt` and `requirements-dev.txt` into it, and run every Python
+  command with that interpreter.
+- In reports and commit messages, do not paste paths from outside the repo
+  (home folder, tool scratch folders). Write `<scratch>` or a repo-relative
+  path instead.
 
 ## Never
 

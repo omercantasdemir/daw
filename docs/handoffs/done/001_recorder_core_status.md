@@ -234,7 +234,7 @@ built-in mic over WASAPI. It used a scratch config so the saved choice in
 auto-conversion path (that device's default rate is 48 kHz):
 
 ```
-Saved device choice to C:\Users\omercantasdemir\.gemini\antigravity\brain\...\scratch\wasapi_config.json
+Saved device choice to <scratch>\wasapi_config.json
 Using Mikrofon Dizisi (Dijital Mikrofonlar için Intel® Smart Sound Teknolojisi) (Windows WASAPI), channel 1 (WASAPI automatic rate conversion)
 Recording to recordings\smoke\take_03.wav  (press Enter to stop, or wait 2 s; Ctrl+C also stops)
 [------------------------------]  -178.4 dBFS  00:00.1
