@@ -42,11 +42,22 @@ different model list. Flags below are copied from `gemini --help` on
 | output | `-o text \| json \| stream-json` |
 | rules file | not stated in `--help`; the task prompt names `BUILDER_RULES.md` explicitly, so no rules file is relied on |
 
-Not yet used for a build. Open points before the first run: the owner's OK to
-use this CLI instead of Antigravity, which model replaces Gemini 3.1 Pro, and
-the approval mode (a headless run cannot answer prompts, so running tests and
-committing needs `yolo` or a policy file; with `auto_edit` alone the builder
-can edit files but not run the checks).
+**Result: the Gemini CLI cannot be used on this account.** The first headless
+run (task 001, 2026-11-15 13:59) failed at sign-in, before doing any work:
+
+```
+IneligibleTierError: This client is no longer supported for Gemini Code Assist
+for individuals. To continue using Gemini, please migrate to the Antigravity
+suite of products: https://antigravity.google
+```
+
+`--help` and `--list-models` work without this check, which is why it looked
+usable. Do not retry it. The builder has to be Antigravity: the `agy` CLI once
+installed, or the IDE through the manual fallback.
+
+Still useful to know for `agy`: a headless run cannot answer approval prompts,
+so running tests and committing needs an auto-approve mode or a policy file.
+Run it in a git worktree on a task branch so a bad run can be thrown away.
 
 ## How runs are launched until then (manual fallback)
 
